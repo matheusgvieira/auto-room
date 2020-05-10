@@ -11,6 +11,9 @@
     "sidenav footer";
   height: 100vh;
 }
+body{
+  margin: 0px;
+}
 
 /* Give every child element its grid name */
 .header {
@@ -20,7 +23,7 @@
 
 .sidenav {
   grid-area: sidenav;
-  background-color: #394263;
+  background-color: #22303f;
 }
 
 .main {
@@ -30,7 +33,7 @@
 
 .footer {
   grid-area: footer;
-  background-color: #648ca6;
+  background-color: #FFF;
 }
 
 .header, .footer {
@@ -38,14 +41,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  background-color: #648ca6;
+  background-color: #FFF;
 }
 
 .sidenav {
   display: flex; /* Will be hidden on mobile */
   flex-direction: column;
   grid-area: sidenav;
-  background-color: #394263;
+  background-color: #22303f;
 }
 
 .sidenav__list {
@@ -62,7 +65,7 @@
   flex-direction: row;
   justify-content: center;
   padding: 20px 20px 20px 20px;
-  color: #ddd;
+  color: #FFF;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);;
 }
 .logo:hover {
@@ -101,10 +104,12 @@
 .card-title{
   display: flex;
   justify-content: center;
-  background-color: #394362;
+  align-items: center;
+  background-color: #22303f;
   width: 100%;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
+  height: 50px;
 }
 .card-title h1{
   color: #FFF ;
@@ -116,6 +121,7 @@
   align-items: center;
   flex-direction: row;    
   width: 100%;
+  height: 55px;
 }
 .value_timeLamp{
   display: flex;
@@ -125,8 +131,8 @@
   width: 100%;
 }
 .value img{
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   padding: 20px 20px 20px 20px;
 }
 .value_timeLamp img{
@@ -142,19 +148,19 @@
 
 /* Force varying heights to simulate dynamic content */
 .card:first-child {
-  height: 485px;  
+  height: 420px;  
 }
 
 .card:nth-child(2) {
-  height: 200px;  
+  height: 265px;  
 }
 
-.card:nth-child(3) {
-  height: 265px;
-}
-.card:nth-child(3) img{
+.card:nth-child(2) img{
   width: 180px;
   height: 160px;
+}
+.card:nth-child(3) {
+  height: 420px;
 }
 .card:nth-child(4) {
   height: 265px;
@@ -162,4 +168,9 @@
 .card:nth-child(4) img{
   width: 180px;
   height: 160px;
+}
+
+#chart-bar{
+  width: 100%;
+  height: 100px;
 }

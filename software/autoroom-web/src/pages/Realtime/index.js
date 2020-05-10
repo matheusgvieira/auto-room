@@ -19,6 +19,7 @@ import lightLow from '../../assets/light_low.png';
 import { Button } from '@material-ui/core';
 
 import GraphT from '../Graph/graphTemperature.js'
+import GraphH from '../Graph/graphHumidity.js'
 
 export default function RealTime() {
 
@@ -51,16 +52,30 @@ export default function RealTime() {
             String(tem[last2]) + ', ' +
             String(tem[last1]) + ', ' +
             String(tem[last]) + ']}');
+
         localStorage.setItem('@temperature', JSON.stringify(t));
-        //variavel.toFixed(2) duas casas após a virgula
-
-
     })
+    
     humidity.on('value', (snapshot) => {
         let hum = snapshot.val()
         const keys = Object.keys(hum)
-        const last = keys.filter((value) => value === keys[keys.length - 1])[0]
-        localStorage.setItem('@humidity', hum[last]);
+
+        const last = keys.filter((value) => value === keys[keys.length - 1])[0];
+        const last1 = keys.filter((value) => value === keys[keys.length - 2])[0];
+        const last2 = keys.filter((value) => value === keys[keys.length - 3])[0];
+        const last3 = keys.filter((value) => value === keys[keys.length - 4])[0];       
+        const last4 = keys.filter((value) => value === keys[keys.length - 5])[0];
+        const last5 = keys.filter((value) => value === keys[keys.length - 6])[0];
+
+        let h = JSON.parse('{"humidity":[' +
+            String(hum[last5]) + ', ' +
+            String(hum[last4]) + ', ' +
+            String(hum[last3]) + ', ' +
+            String(hum[last2]) + ', ' +
+            String(hum[last1]) + ', ' +
+            String(hum[last]) + ']}');
+
+        localStorage.setItem('@humidity', JSON.stringify(h));
 
     })
     time.on('value', (snapshot) => {
@@ -72,9 +87,7 @@ export default function RealTime() {
         const last2 = keys.filter((value) => value === keys[keys.length - 3])[0];
         const last3 = keys.filter((value) => value === keys[keys.length - 4])[0];
         const last4 = keys.filter((value) => value === keys[keys.length - 5])[0];
-        const last5 = keys.filter((value) => value === keys[keys.length - 6])[0];
-
-        
+        const last5 = keys.filter((value) => value === keys[keys.length - 6])[0];        
         
         let time = JSON.parse('{"min":[' +
             String(getMin(datatime[last5])) + ', ' +
@@ -117,13 +130,14 @@ export default function RealTime() {
 
     const temp = JSON.parse(localStorage.getItem('@temperature'));
     const humi = localStorage.getItem('@humidity');
+    const humid = JSON.parse(humi);
     const dtime = localStorage.getItem('@time');
 
     return (
         <div className="dashboard-container">
             <div className="header">
                 <div className="header__search">House</div>
-                <div className="header__avatar">Matheus Gois Vieira</div>
+                <div className="header__avatar">Client</div>
             </div>
 
             <div className="sidenav">
@@ -153,17 +167,7 @@ export default function RealTime() {
                         <div>
                             <GraphT />
                         </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card-title">
-                            <h1>Humidity</h1>
-                        </div>
-                        <div className="value">
-                            <img src={drop} alt="" />
-                            <p>{humi} %</p>
-                        </div>
-                    </div>
+                    </div>                    
 
                     <div className="card">
                         <div className="card-title">
@@ -172,6 +176,19 @@ export default function RealTime() {
                         <div className="value_timeLamp">
                             <img src={clock} alt="" />
                             <p>{dtime}</p>
+                        </div>
+                    </div>
+
+                    <div className="card">
+                        <div className="card-title">
+                            <h1>Humidity</h1>
+                        </div>
+                        <div className="value">
+                            <img src={drop} alt="" />
+                            <p>{humid.humidity[5]} %</p>
+                        </div>
+                        <div id="chart-bar">
+                            <GraphH />
                         </div>
                     </div>
 

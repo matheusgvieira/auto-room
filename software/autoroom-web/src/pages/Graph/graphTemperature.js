@@ -3,8 +3,7 @@ import Chart from "react-apexcharts";
 //import moment from 'moment';
 
 const temp = JSON.parse(localStorage.getItem('@temperature'));
-const datime = JSON.parse(localStorage.getItem('@min'));
-
+const time = JSON.parse(localStorage.getItem('@min'));
 
 class App extends Component {
   constructor(props) {
@@ -16,12 +15,12 @@ class App extends Component {
           id: "basic-bar"
         },
         xaxis: {
-          categories: [ datime.min[0], 
-                        datime.min[1],
-                        datime.min[2], 
-                        datime.min[3], 
-                        datime.min[4], 
-                        datime.min[5]]
+          categories: [ time.min[0], 
+                        time.min[1],
+                        time.min[2], 
+                        time.min[3], 
+                        time.min[4], 
+                        time.min[5]]
         }
       },
       series: [
